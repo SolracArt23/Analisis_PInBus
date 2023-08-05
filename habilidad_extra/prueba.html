@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Modelo TensorFlow.js</title>
+</head>
+<body>
+    <!-- Cargar TensorFlow.js -->
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@3.8.0/dist/tf.min.js"></script>
+
+    <!-- Tu código JavaScript para cargar y ejecutar el modelo -->
+    <script type="text/JavaScript">
+        // Función para cargar el modelo y ejecutarlo
+        var modelo = null;
+        (async () =>{
+            console.log("Cargando ..");
+            modelo = await tf.loadLayersModel("./modelo_js/model.json");
+            console.log("Cargado")
+
+        })();
+    </script>
+</body>
+</html>

@@ -1,0 +1,120 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+    background-color: #111730;
+    color: #fff;
+}
+
+header {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 1rem;
+}
+
+nav {
+    background-color: #444;
+    padding: 0.5rem;
+}
+
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+nav li {
+    margin-right: 1rem;
+}
+
+nav a {
+    color: #fff;
+    text-decoration: none;
+    padding: 0.25rem 0.5rem;
+    border-radius: 3px;
+}
+
+main {
+    padding: 2rem;
+}
+
+section {
+    margin-bottom: 2rem;
+    border-bottom: 1px solid #fff; /* Línea blanca en la parte inferior de cada sección */
+    padding-bottom: 2rem;
+}
+
+iframe {
+    display: block;
+    margin: 0 auto;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Sombreado al iframe */
+}
+
+#Modelo_ia
+{
+    align-items: center;
+    align-self: center;
+}
+
+/* Estilos para los selectores */
+.select-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    background-color: #2a3d5b; /* Fondo azul oscuro para el contenedor de los selectores */
+    padding: 1rem;
+    border-radius: 5px;
+    align-self: center;
+}
+
+label {
+    width: 100%;
+    margin-bottom: 0.5rem;
+}
+.styled-select {
+    display: inline-block; /* Mostrar los selectores uno al lado del otro */
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    background-color: #f9f9f9;
+    width: 100%;
+    max-width: 300px;
+    margin-bottom: 10px; /* Espaciado en los selects */
+    margin-right: 10px; /* Espacio entre los selectores */
+
+}
+
+
+footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 1rem;
+}
+
+#btn_prediccion {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #4CAF50; /* Color de fondo del botón */
+    color: #fff; /* Color del texto del botón */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* Transición de color de fondo al hacer hover */
+}
+
+#btn_prediccion:hover {
+    background-color: #45a049; /* Color de fondo del botón al hacer hover */
+}
+section {
+    opacity: 0; /* Inicialmente, las secciones están ocultas */
+    transition: opacity 0.5s ease-in-out; /* Transición de opacidad con duración de 0.5 segundos */
+}
+
+.visible {
+    opacity: 1; /* Cuando la clase 'visible' se agrega a una sección, se vuelve visible */
+}

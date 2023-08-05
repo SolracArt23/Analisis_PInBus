@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./main.css">
+    <script src="./modelo.js"></script>
+
+    <title>Analisis PinBus</title>
+</head>
+<body>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@3.8.0/dist/tf.min.js"></script>
+    <!-- Cargar el modelo -->
+    <script type="text/JavaScript">
+        // Función para cargar el modelo y ejecutarlo
+        var modelo = null;
+        (async () =>{
+            console.log("Cargando ..");
+            modelo = await tf.loadLayersModel("./modelo_js/model.json");
+            console.log("Cargado");
+
+        })();
+    </script>
+
+    <header>
+        <h1> <b>Problematica:</b> <i>Operación de pasajeros y despacho de vehículos en la modalidad de transporte de pasajeros por carretera</i></h1>
+    </header>
+
+    <main>
+        
+        <section>
+            <h1>Problematica a Resolver:</h1>
+            <p>
+                
+                La problemática principal se centra en analizar y combinar conjuntos de datos relacionados 
+                con la "Operación de pasajeros y despacho de vehículos en la modalidad de transporte de 
+                pasajeros por carretera" en Colombia. Los datos provienen de fuentes públicas, como el portal 
+                de datos abiertos del gobierno colombiano y el portal de geovisores del DANE.
+                <br>
+                Donde con base en estos datos se crearon las siguientes preguntas:
+                
+                <ul>
+                    <li>¿Tendencia de los viajes en carretera?</li>
+                    <li>¿Duración promedio de estos viajes?</li>
+                    <li>¿Cuál es la terminal más concurrida?</li>
+                    <li>¿Cuántos vehículos y qué tipo de vehículos salen del municipio?</li>
+                    <li>Número de vehículos que llegan al municipio dado su municipio de origen.</li>
+                </ul>
+
+                El objetivo final es generar tablas descriptivas que proporcionen información valiosa para el análisis 
+                y que puedan ser compartidas de manera accesible en un archivo público de Google Sheets. Para ello, 
+                se utilizará programación modular y se crearán scripts separados para cargar los datos y procesarlos.
+                <br>
+                <br>
+                Anexo a esto  sea creado  un video expositivo, donde se expresa el por que se escogio estas preguntas, ha si como 
+                lo descubierto durante el analisis; donde como habilidad extra se escogio crear un pequeño servicio 
+                con una inteligencia artificial la cual se puede utilizar en el utimo apartado de esta pagina web.
+            </p>
+            
+        </section>
+
+        <!-- Aquí se agrega el iframe -->
+        <section>
+            <h1>Video Expositivo</h1>
+            <p>
+                <strong>Objetivo  del video</strong>
+                En el siguiente video, podrás observar el desarrollo del análisis realizado sobre los 
+                datos de "Operación de pasajeros y despacho de vehículos en la modalidad de 
+                transporte de pasajeros por carretera" en Colombia. Durante el análisis, se utilizaron 
+                diversas herramientas para procesar y visualizar los datos obtenidos de fuentes públicas
+                como el portal de datos abiertos del gobierno colombiano y el portal de geovisores del DANE.
+                <br>
+                <br>
+                En este video encontraras respuesta a las preguntas previamente planteadas, asi como susrespectivas gericas, tambien encontraras 
+                mas informacion sobre donde se encuentra los dististos materiales creados para este analisis 
+            </p>
+            <!-- <iframe width="450" height="515" src="https://drive.google.com/file/d/1dBU14pWj49mRLrQDeSHR9sqQh7VDrJLn/view?usp=sharing" frameborder="0" allowfullscreen></iframe> -->
+            <br>
+            <br>
+            <strong>Enlaces a los diversos contenidos creados</strong>
+            <ul>
+                <li>Codigo fuente  de las <a href="https://github.com/SolracArt23/Analisis_PInBus">graficas hechas en python</a></li>
+                <li>Enlcae de los graficos de python en un archivo de <a href="https://1drv.ms/x/s!AqK0F9jwarcXhO0RbxqFM8O1KHCeJg?e=dgrSgO">google sheet</a></li>
+                <l1>Dashboard creado en <a href="https://1drv.ms/x/s!Ag8Ck-aEieSWgRYOi64CiK5ZkVBH?e=CSgfBh">excel</a></l1>
+                <li>Enlace de muestra creada en <a href="https://docs.google.com/spreadsheets/d/1v4w_c-0D8moJFnzxFxrCGN0d7Hyqni8HkgCCTD5e5F4/edit?usp=sharing">google sheet</a></li>
+                <li>Enlace a los <a href="https://geoportal.dane.gov.co/geovisores/territorio/consulta-divipola-división-político-administrativa-de-colombia/">datos</a> utilizados</li>
+                <li>Enlace al <a href="">video original</a></li>
+            </ul>
+        </section>
+        <section>
+            <h2>Modelo de prediccion de pasajeros y duracion del viaje</h2>
+            <p>
+                Como un posible producto se creo un modelo de inteligencia artificial que con base en 
+                el municipio de origen y destino, asi como el tipo de vehiculo y su clase, determinara la 
+                duracion del viaje asi como la posible cantidad de pasajeros. 
+
+            </p>
+            <div id="Modelo_ia">
+                <script>
+                    fetch('./diccionario.json')
+                    .then(response => response.json())
+                    .then(data =>
+                    {
+                        div = document.getElementById("Modelo_ia");
+                        //Seccion para municipio de origen
+                        mun_ori=document.createElement('select');
+                        mun_ori.classList.add("styled-select");
+
+                        // Obtener las opciones para la clave "CLASE_VEHICULO"
+                        var opciones = data["MUNICIPIO_ORIGEN_RUTA"];
+
+                        // Crear opciones y agregarlas al select
+                        for (const key in opciones) {
+                        const option = document.createElement('option');
+                        option.value = opciones[key];
+                        option.textContent = key;
+                        mun_ori.appendChild(option);
+                        }
+                        // Agregar el select a un elemento existente en el DOM (por ejemplo, body)
+                        div.appendChild(mun_ori);  
+                        
+                        
+                        //Seccion para municipo de destino
+                        mun_des=document.createElement('select');
+                        mun_des.classList.add("styled-select");
+
+                        // Obtener las opciones para la clave "CLASE_VEHICULO"
+                        var opciones = data["MUNICIPIO_DESTINO_RUTA"];
+
+                        // Crear opciones y agregarlas al select
+                        for (const key in opciones) {
+                        const option = document.createElement('option');
+                        option.value = opciones[key];
+                        option.textContent = key;
+                        mun_des.appendChild(option);
+                        }
+                        // Agregar el select a un elemento existente en el DOM (por ejemplo, body)
+                        div.appendChild(mun_des);
+                        //Seccion tipo vehiculo
+                        tipo_vehi=document.createElement('select');
+                        tipo_vehi.classList.add("styled-select");
+
+                        // Obtener las opciones para la clave "CLASE_VEHICULO"
+                        var opciones = data["CLASE_VEHICULO"];
+
+                        // Crear opciones y agregarlas al select
+                        for (const key in opciones) {
+                        const option = document.createElement('option');
+                        option.value = opciones[key];
+                        option.textContent = key;
+                        tipo_vehi.appendChild(option);
+                        }
+                        // Agregar el select a un elemento existente en el DOM (por ejemplo, body)
+                        div.appendChild(tipo_vehi);
+
+
+                        // Seccion clase de vehiculo
+                        clase_vehi=document.createElement('select');
+                        clase_vehi.classList.add("styled-select");
+                        
+                        // Obtener las opciones para la clave "NIVEL_SERVICIO"
+                        var opciones = data["NIVEL_SERVICIO"];
+
+                        // Crear opciones y agregarlas al select
+                        for (const key in opciones) {
+                        const option = document.createElement('option');
+                        option.value = opciones[key];
+                        option.textContent = key;
+                        clase_vehi.appendChild(option);
+                        }
+                        // Agregar el select a un elemento existente en el DOM (por ejemplo, body)
+                        div.appendChild(clase_vehi);  
+                    })
+                </script>
+            </div>
+            <h1>Prediccion:</h1>
+            <div id="seccion_prediccion">
+
+            </div>
+
+            <button id="btn_prediccion">Predecir</button>
+            <script>
+                
+                // Agregar un listener al botón para escuchar el evento clic
+                const btnPrediccion = document.getElementById('btn_prediccion');
+                btnPrediccion.addEventListener('click', ()=>{
+                    Prediccion(parseInt(mun_ori.value),parseInt(mun_des.value),parseInt(tipo_vehi.value),parseInt(clase_vehi.value))
+                });
+            </script>
+
+        </section>
+
+    </main>
+
+    <footer>
+        <p>Derechos de autor &copy; 2023. Todos los derechos reservados. <br> <b>Creditos:</b> Carlos Corredor</p>
+    </footer>
+    <!-- SEccion de scripts -->
+ 
+<script>
+    // Función para comprobar si una sección está dentro del área visible de la ventana
+    function isElementInViewport(element) {
+        const rect = element.getBoundingClientRect();
+        return (
+            rect.top >= 0 &&
+            rect.left >= 0 &&
+            rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+            rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+        );
+    }
+
+    // Función para verificar la visibilidad de las secciones y agregar la clase 'visible'
+    function checkSectionsVisibility() {
+        const sections = document.querySelectorAll('section');
+        sections.forEach(section => {
+            if (isElementInViewport(section)) {
+                section.classList.add('visible');
+            }
+        });
+    }
+
+    // Verificar la visibilidad de las secciones al cargar la página y al hacer scroll
+    document.addEventListener('DOMContentLoaded', checkSectionsVisibility);
+    window.addEventListener('scroll', checkSectionsVisibility);
+</script>
+</body>
+</html>
